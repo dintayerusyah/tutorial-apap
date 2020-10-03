@@ -33,4 +33,13 @@ public class ResepInMemoryService implements ResepService{
         }
         return null;
     }
+
+    @Override
+    public void deleteAll(){
+        //Mendapatkan semua ResepModel
+        List<ResepModel> listResep = getResepList();
+
+        //Menghapus resep
+        listResep.clear();
+    }
 }

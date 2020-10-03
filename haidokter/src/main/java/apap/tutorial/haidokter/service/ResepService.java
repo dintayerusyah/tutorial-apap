@@ -8,6 +8,8 @@ public interface ResepService {
     //Method untuk menambahkan resep
     void addResep(ResepModel resep);
 
+    void deleteAll();
+
     //Method untuk mendapatkan semua data resep yang telah tersimpan
     List<ResepModel> getResepList();
 

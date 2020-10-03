@@ -135,4 +135,13 @@ public class ResepController {
             return "delete-resep";
         }
     }
+
+    //Challenge
+    @RequestMapping("/resep/deleteall")
+    public String deleteAllResep(Model model){
+        resepService.deleteAll();
+
+        //Return view template yang ingin digunakan
+        return "delete-all";
+    }
 }
