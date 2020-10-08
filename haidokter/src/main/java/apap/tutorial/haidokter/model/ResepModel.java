@@ -10,6 +10,7 @@ import java.util.List;
 @Table(name = "resep")
 public class ResepModel implements Serializable{
     @Id
+    @Column(name = "no_resep")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long noResep;
 
