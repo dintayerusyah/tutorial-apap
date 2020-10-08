@@ -94,7 +94,7 @@ public class ResepController {
         ResepModel resep = resepService.getResepByNomorResep(noResep);
 
         //Mengubah catatan resep
-        resep.setCatatan(catatan);
+        resepService.updateCatatanResep(resep, catatan);
 
         //Add variabel ResepModel ke 'resep' untuk dirender pada thymeleaf
         model.addAttribute("resep", resep);
@@ -120,16 +120,8 @@ public class ResepController {
             return "delete-not-found";
         }
         else{
-            //Mendapatkan semua ResepModel
-            List<ResepModel> listResep = resepService.getResepList();
-
             //Menghapus resep
-            ListIterator<ResepModel> iter = listResep.listIterator();
-            while(iter.hasNext()){
-                if(iter.next().getNoResep().equals(noResep)){
-                    iter.remove();
-                }
-            }
+            resepService.deleteResepByNoResep(noResep);
 
             //Return view template yang ingin digunakan
             return "delete-resep";
