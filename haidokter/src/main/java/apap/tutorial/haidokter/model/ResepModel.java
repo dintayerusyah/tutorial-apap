@@ -31,13 +31,6 @@ public class ResepModel implements Serializable{
     @OneToMany(mappedBy = "resepModel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ObatModel> listObat;
 
-    // public ResepModel(Long noResep, String namaDokter, String namaPasien, String catatan) {
-    //     this.noResep = noResep;
-    //     this.namaDokter = namaDokter;
-    //     this.namaPasien = namaPasien;
-    //     this.catatan = catatan;
-    // }
-
     public Long getNoResep() {
         return this.noResep;
     }
@@ -68,6 +61,14 @@ public class ResepModel implements Serializable{
 
     public void setCatatan(String catatan) {
         this.catatan = catatan;
+    }
+
+    public List<ObatModel> getListObat() {
+        return this.listObat;
+    }
+
+    public void setListObat(List<ObatModel> listObat) {
+        this.listObat = listObat;
     }
 
 }
