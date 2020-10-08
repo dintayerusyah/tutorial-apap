@@ -31,7 +31,7 @@ public class ObatModel implements Serializable{
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "resep_id", referencedColumnName = "no_resep", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE);
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private ResepModel resepModel;
 
