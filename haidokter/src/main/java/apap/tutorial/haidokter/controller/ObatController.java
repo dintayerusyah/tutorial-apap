@@ -68,4 +68,14 @@ public class ObatController {
 
         return "update-obat";
     }
+
+    @GetMapping("/obat/delete/{id}")
+    private String deleteObat(
+        @PathVariable Long id,
+        Model model
+    ){
+        ObatModel obat = obatService.getObatByIdObat(id);
+        obatService.deleteObat(obat);
+        return "delete-obat";
+    }
 }
