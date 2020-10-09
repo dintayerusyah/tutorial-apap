@@ -28,6 +28,7 @@
             <a th:href="@{/obat/change/} + ${obat.id}">Change Obat</a>
             <a th:href="@{/obat/delete/} + ${obat.id}">Delete Obat</a>
         </div>
+        <!-- Latihan no 2 -->
         <h3 th:unless="${listObat == null}">Resep belum memiliki obat</h3>
         <br><br>
         <td><a th:href="@{/obat/add/} + ${resep.noResep}">Add Obat</a></td>
