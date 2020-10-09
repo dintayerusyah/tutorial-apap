@@ -31,4 +31,9 @@ public class ResepServiceImpl implements ResepService{
 
         return resep;
     }
+
+    @Override
+    public void deleteResepByNoResep(ResepModel resepModel){
+        resepDb.delete(resepModel);
+    }
 }
