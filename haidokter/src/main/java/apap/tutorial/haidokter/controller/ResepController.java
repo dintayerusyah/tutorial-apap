@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Comparator;
 
 
 @Controller
@@ -80,6 +81,18 @@ public class ResepController {
         model.addAttribute("listObat", listObat);
 
         return "view-resep";
+    }
+
+    //Latihan nomor 1
+    //Method view all resep
+    @GetMapping("/resep/viewall")
+    public String viewAllResep(
+        Model model
+    ){
+        List<ResepModel> listResep = resepService.getResepList();
+        listResep.sort(Comparator.comparing(ResepModel::getNoResep).reversed());
+        model.addAttribute("listResep", listResep);
+        return "viewall-resep";
     }
 
     // TUTORIAL 2
