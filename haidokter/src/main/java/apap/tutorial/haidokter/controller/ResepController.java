@@ -74,13 +74,19 @@ public class ResepController {
         @RequestParam(value = "noResep") Long noResep,
         Model model
     ){
-        ResepModel resep = resepService.getResepByNomorResep(noResep);
-        List<ObatModel> listObat = resep.getListObat();
+        try{
+            ResepModel resep = resepService.getResepByNomorResep(noResep);
+            List<ObatModel> listObat = resep.getListObat();
 
-        model.addAttribute("resep", resep);
-        model.addAttribute("listObat", listObat);
+            model.addAttribute("resep", resep);
+            model.addAttribute("listObat", listObat);
 
-        return "view-resep";
+            return "view-resep";
+        }
+        catch(Exception NoSuchElementException){
+            return "resep-not-found";
+        }
+        
     }
 
     //Latihan nomor 1
@@ -93,6 +99,27 @@ public class ResepController {
         listResep.sort(Comparator.comparing(ResepModel::getNoResep).reversed());
         model.addAttribute("listResep", listResep);
         return "viewall-resep";
+    }
+
+    //Latihan no 4
+    @GetMapping("/resep/delete/{noResep}")
+    public String deleteResep(
+        @PathVariable Long noResep,
+        Model model
+    ){
+        //Memeriksa apakah resep memiliki obat
+        ResepModel resep = resepService.getResepByNomorResep(noResep);
+        List<ObatModel> listObat = resep.getListObat();
+        //Jika tidak ada obat, hapus resep
+        if(listObat.isEmpty()){
+            model.addAttribute("resep", resep);
+            resepService.deleteResepByNoResep(resep);
+            return "delete-resep";
+        }
+        //Gagal menghapus resep
+        else{
+            return "delete-resep-failed";
+        }
     }
 
     // TUTORIAL 2

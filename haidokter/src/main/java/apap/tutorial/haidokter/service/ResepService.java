@@ -17,6 +17,9 @@ public interface ResepService {
     //Method untuk update resep
     ResepModel updateResep(ResepModel resepModel);
 
+    //Method untuk menghapus resep
+    void deleteResepByNoResep(ResepModel resepModel);
+
     // Tutorial 2
     // void updateCatatanResep(ResepModel resep, String catatan);
 
