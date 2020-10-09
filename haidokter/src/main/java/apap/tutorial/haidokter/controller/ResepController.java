@@ -52,10 +52,15 @@ public class ResepController {
         @PathVariable Long noResep,
         Model model
     ){
-        ResepModel resep = resepService.getResepByNomorResep(noResep);
+        try {
+            ResepModel resep = resepService.getResepByNomorResep(noResep);
         model.addAttribute("resep", resep);
         
         return "form-update-resep";
+        }
+        catch(Exception NoSuchElementException){
+            return "resep-not-found";
+        }
     }
 
     @PostMapping("/resep/change")
@@ -107,18 +112,23 @@ public class ResepController {
         @PathVariable Long noResep,
         Model model
     ){
-        //Memeriksa apakah resep memiliki obat
-        ResepModel resep = resepService.getResepByNomorResep(noResep);
-        List<ObatModel> listObat = resep.getListObat();
-        //Jika tidak ada obat, hapus resep
-        if(listObat.isEmpty()){
-            model.addAttribute("resep", resep);
-            resepService.deleteResepByNoResep(resep);
-            return "delete-resep";
+        try{
+            //Memeriksa apakah resep memiliki obat
+            ResepModel resep = resepService.getResepByNomorResep(noResep);
+            List<ObatModel> listObat = resep.getListObat();
+            //Jika tidak ada obat, hapus resep
+            if(listObat.isEmpty()){
+                model.addAttribute("resep", resep);
+                resepService.deleteResepByNoResep(resep);
+                return "delete-resep";
+            }
+            //Gagal menghapus resep
+            else{
+                return "delete-resep-failed";
+            }
         }
-        //Gagal menghapus resep
-        else{
-            return "delete-resep-failed";
+        catch(Exception NoSuchElementException){
+            return "resep-not-found";
         }
     }
 
