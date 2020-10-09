@@ -31,4 +31,9 @@ public class ObatServiceImpl implements ObatService{
 
         return obat;
     }
+
+    @Override
+    public void deleteObat(ObatModel obat){
+        obatDb.delete(obat);
+    }
 }
