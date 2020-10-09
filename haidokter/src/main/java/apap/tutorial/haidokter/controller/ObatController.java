@@ -46,6 +46,7 @@ public class ObatController {
         return "add-obat";
     }
 
+    // Latihan no 3
     @GetMapping("/obat/change/{id}")
     private String changeObatFormPage(
         @PathVariable Long id,
