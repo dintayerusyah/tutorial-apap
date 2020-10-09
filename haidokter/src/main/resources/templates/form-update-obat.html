@@ -12,11 +12,6 @@
         <input type="text" name="nama" th:value="*{nama}"/>
         <br>
         Bentuk: <br>
-        <!-- <select name="bentuk" th:value="*{bentuk}">
-            <option value="0">Kapsul</option>
-            <option value="1">Tablet</option>
-            <option value="2">Sirup</option>
-        </select> -->
         <select th:field="*{bentuk}">
             <option th:value="0" th:text="Kapsul"></option>
             <option th:value="1" th:text="Tablet"></option>
