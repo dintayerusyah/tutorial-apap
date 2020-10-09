@@ -45,4 +45,26 @@ public class ObatController {
 
         return "add-obat";
     }
+
+    @GetMapping("/obat/change/{id}")
+    private String changeObatFormPage(
+        @PathVariable Long id,
+        Model model
+    ){
+        ObatModel obat = obatService.getObatByIdObat(id);
+        model.addAttribute("obat", obat);
+
+        return "form-update-obat";
+    }
+
+    @PostMapping("/obat/change")
+    private String changeObatFormSubmit(
+        @ModelAttribute ObatModel obat,
+        Model model
+    ){
+        ObatModel updatedObat = obatService.updateObat(obat);
+        model.addAttribute("obat", updatedObat);
+
+        return "update-obat";
+    }
 }

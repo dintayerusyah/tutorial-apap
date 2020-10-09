@@ -19,4 +19,16 @@ public class ObatServiceImpl implements ObatService{
     public void addObat(ObatModel obat){
         obatDb.save(obat);
     }
+
+    @Override
+    public ObatModel getObatByIdObat(Long id){
+        return obatDb.findById(id).get();
+    }
+
+    @Override
+    public ObatModel updateObat(ObatModel obat){
+        obatDb.save(obat);
+
+        return obat;
+    }
 }

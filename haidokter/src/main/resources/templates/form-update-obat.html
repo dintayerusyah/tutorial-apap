@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Data Obat</title>
+</head>
+<body>
+    <h2>Change Data Obat</h2>
+    <form th:action="@{/obat/change}" th:object="${obat}" method="POST">
+        <input type="hidden" th:field="*{id}"/>
+        Nama Obat: <br>
+        <input type="text" name="nama" th:value="*{nama}"/>
+        <br>
+        Bentuk: <br>
+        <!-- <select name="bentuk" th:value="*{bentuk}">
+            <option value="0">Kapsul</option>
+            <option value="1">Tablet</option>
+            <option value="2">Sirup</option>
+        </select> -->
+        <select th:field="*{bentuk}">
+            <option th:value="0" th:text="Kapsul"></option>
+            <option th:value="1" th:text="Tablet"></option>
+            <option th:value="2" th:text="Sirup"></option>
+        </select>
+        <br>
+        Kuantitas: <br>
+        <input type="number" name="kuantitas" th:value="*{kuantitas}"/>
+        <input id="resepModel" th:field="*{resepModel}" th:value="*{resepModel}" type="hidden"/>
+        <br><br><br>
+        <button type="submit" value="Submit">Submit</button>
+    </form>
+</body>
+</html>
