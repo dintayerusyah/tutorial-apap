@@ -3,7 +3,37 @@
 * **Eldinta Yerusyah Taripar** - *1706984575* - *B*
 
 ### What I have learned today
-### Pertanyaan  Tutorial
+### Pertanyaan  Tutorial 3
+1. Pada class ResepDb, terdapat method findByNoResep, apakah kegunaan dari method tersebut? <br/>
+Method findByNoResep digunakan untuk mencari resep berdasarkan nomor resep dari database, kemudian me-return object ResepModel (atau object Optional kosong jika ResepModel tidak ditemukan).
+
+2. Pada class ResepController , jelaskan perbedaan method addResepFormPage dan addResepSubmit? <br/>
+addResepFormPage menggunakan method "GET" dan berfungsi untuk mengakses halaman formulir add resep. Sedangkan addResepSubmit menggunakan method "POST" dan berfungsi untuk menyimpan data dari formulir add resep ke database.
+
+3. Jelaskan kegunaan dari JPA Repository ! <br/>
+JPA Repository berfungsi sebagai data layer pada springboot. JPA repository melakukan mapping dan mengakses database. Kita dapat menggunakan JPA repository dengan membuat interface yang meng-extends JPA repository kemudian mengimplementasikan method-method CRUD didalamnya.
+
+4. Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara ResepModel dan ObatModel dibuat? <br/>
+Relasi antara ResepModel dan ObatModel dibuat di ResepModel.java dengan code berikut : <br/>
+@OneToMany(mappedBy = "resepModel", fetch = FetchType.LAZY, cascade = CascadeType.ALL) <br/>
+private List<ObatModel> listObat;
+<br/>
+Potongan kode diatas memetakan satu ResepModel ke banyak ObatModel.
+<br/>
+Berikut merupakan potongan kode dari ObatModel.java yang memetakan obat ke resep. <br/>
+@ManyToOne(fetch = FetchType.EAGER, optional = false)
+@JoinColumn(name = "resep_id", referencedColumnName = "no_resep", nullable = false)
+@OnDelete(action = OnDeleteAction.CASCADE)
+@JsonIgnore
+private ResepModel resepModel;
+<br/>
+Pada potongan kode diatas, ObatModel memiliki relasi many to one ke ResepModel dengan menggunakan @JoinColumn menandakan kolom pada ObatModel (resep_id) yang berasosiasi dengan kolom pada ResepModel (no_resep).
+
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL , dan FetchType.EAGER ! <br/>
+LAZY dan EAGER merupakan tipe data fetching/loading. Pada eager loading, jika kita memuat (loading) data obat, maka semua resep yang terasosiasi juga akan dimuat. Sedangkan pada lazy loading, data obat tidak akan dimuat ke memory kecuali dipanggil secara eksplisit. <br/>
+CascadeType.ALL digunakan untuk mengaplikasikan semua tipe CascadeTypes Hibernate.
+
+### Pertanyaan  Tutorial 2
 1. Cobalah untuk menambahkan sebuah resep dengan mengakses link berikut:
 http://localhost:8080/resep/add?noResep=1&namaDokter=Papa%20APAP&namaPasien=Quanta%20F
 asilkom&catatan=Semangat
@@ -33,5 +63,5 @@ Saya mencoba menambahkan resep baru dengan URL http://localhost:8080/resep/add?n
 ### What I did not understand
 (tuliskan apa saja yang kurang Anda mengerti, Anda dapat men-_check_ apabila Anda sudah mengerti
 dikemudian hari, dan tambahkan tulisan yang membuat Anda mengerti)
-- [ ] Apa itu JavaBeans? Bagaimana cara menggunakannya?
+- [ ] 
 - [x] ......
