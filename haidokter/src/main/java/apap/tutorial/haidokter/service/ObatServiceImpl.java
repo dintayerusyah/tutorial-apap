@@ -36,4 +36,9 @@ public class ObatServiceImpl implements ObatService{
     public void deleteObat(ObatModel obat){
         obatDb.delete(obat);
     }
+
+    @Override
+    public ObatModel getObatByBentukDanKuantitas (Integer bentuk, Integer kuantitas){
+        return obatDb.findByBentukAndKuantitas(bentuk, kuantitas).get();
+    }
 }

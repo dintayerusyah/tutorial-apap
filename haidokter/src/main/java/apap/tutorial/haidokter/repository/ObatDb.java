@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface ObatDb extends JpaRepository<ObatModel, Long>{
     Optional<ObatModel> findById(Long id);
+
+    Optional<ObatModel> findByBentukAndKuantitas(Integer bentuk, Integer kuantitas);
 }

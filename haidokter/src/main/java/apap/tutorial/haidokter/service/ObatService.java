@@ -12,4 +12,6 @@ public interface ObatService {
     ObatModel updateObat(ObatModel obat);
 
     void deleteObat(ObatModel obat);
+
+    ObatModel getObatByBentukDanKuantitas(Integer bentuk, Integer kuantitas);
 }
