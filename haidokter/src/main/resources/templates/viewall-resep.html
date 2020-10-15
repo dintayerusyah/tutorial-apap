@@ -2,15 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>View All Resep</title>
+        <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     </head>
     <body>
-        <h2>Daftar Seluruh Resep</h2>
+        <nav th:replace="fragments/fragment :: navbar"></nav>
+        <div class="container-fluid">
+            
+        </div>
+        <!-- <h2>Daftar Seluruh Resep</h2>
         <div th:each="resep: ${listResep}">
             <h3 th:text="'Nomor Resep: ' + ${resep.noResep}"></h3>
             <h3 th:text="'Nama Dokter: ' + ${resep.namaDokter}"></h3>
             <h3 th:text="'Nama Pasien: ' + ${resep.namaPasien}"></h3>
             <h3 th:text="'Catatan: ' + ${resep.catatan}"></h3>
         </div>
-        <button><a href="/">Home</a></button>
+        <button><a href="/">Home</a></button> -->
     </body>
 </html>

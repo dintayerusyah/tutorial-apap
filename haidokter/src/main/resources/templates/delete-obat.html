@@ -2,9 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Berhasil Menghapus Obat</title>
+        <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     </head>
     <body>
-        <h2>Berhasil menghapus obat</h2>
-        <a href="/">Home</a>
+        <nav th:replace="fragments/fragment :: navbar"></nav>
+        <div class="container-fluid">
+            <h3 th:text="${obatCount} + ' Obat telah berhasil dihapus'"></h3>
+            <a th:href="@{/}">Kembali ke Home</a>
+        </div>
     </body>
 </html>
