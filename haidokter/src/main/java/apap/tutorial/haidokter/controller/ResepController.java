@@ -74,9 +74,9 @@ public class ResepController {
         return "update-resep";
     }   
     
-    @GetMapping("/resep/view")
+    @GetMapping("/resep/view/{noResep}")
     public String viewDetailResep(
-        @RequestParam(value = "noResep") Long noResep,
+        @PathVariable Long noResep,
         Model model
     ){
         try{
