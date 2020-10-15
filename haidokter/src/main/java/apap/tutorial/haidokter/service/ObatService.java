@@ -11,5 +11,7 @@ public interface ObatService {
 
     ObatModel updateObat(ObatModel obat);
 
-    void deleteObat(ObatModel obat);
+    // void deleteObat(ObatModel obat);
+
+    void deleteObatById(Long idObat);
 }

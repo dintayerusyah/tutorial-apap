@@ -69,13 +69,22 @@ public class ObatController {
         return "update-obat";
     }
 
-    @GetMapping("/obat/delete/{id}")
-    private String deleteObat(
-        @PathVariable Long id,
-        Model model
-    ){
-        ObatModel obat = obatService.getObatByIdObat(id);
-        obatService.deleteObat(obat);
+    // @GetMapping("/obat/delete/{id}")
+    // private String deleteObat(
+    //     @PathVariable Long id,
+    //     Model model
+    // ){
+    //     ObatModel obat = obatService.getObatByIdObat(id);
+    //     obatService.deleteObat(obat);
+    //     return "delete-obat";
+    // }
+
+    @PostMapping(value = "/obat/delete")
+    public String deleteMenuFormSubmit(@ModelAttribute ResepModel resep, Model model){
+        model.addAttribute("obatCount", resep.getListObat().size());
+        for (ObatModel obat : resep.getListObat()){
+            obatService.deleteObatById(obat.getId());
+        }
         return "delete-obat";
     }
 }
