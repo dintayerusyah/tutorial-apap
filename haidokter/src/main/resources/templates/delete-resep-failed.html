@@ -6,7 +6,7 @@
         <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     </head>
     <body>
-        <nav th:replace="fragments/fragment :: navbar"></nav>
+        <nav th:replace="fragments/fragment :: navbar(title='Delete Resep Failed')"></nav>
         <h2>Resep tidak bisa dihapus karena memiliki obat</h2>
         <a href="/">Home</a>
     </body>

@@ -6,7 +6,7 @@
         <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     </head>
     <body>
-        <nav th:replace="fragments/fragment :: navbar"></nav>
+        <nav th:replace="fragments/fragment :: navbar(title='Update Resep Success')"></nav>
         <h2 th:text="'Berhasil memperbarui resep dengan nomor resep ' + ${resep.noResep} + '.'"></h2>
         <a href="/">Kembali ke Home</a>
     </body>

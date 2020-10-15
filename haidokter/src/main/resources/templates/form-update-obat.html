@@ -7,7 +7,7 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <nav th:replace="fragments/fragment :: navbar(title='Ubah Obat')"></nav>
     <h2>Change Data Obat</h2>
     <form th:action="@{/obat/change}" th:object="${obat}" method="POST">
         <input type="hidden" th:field="*{id}"/>

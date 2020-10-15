@@ -17,6 +17,7 @@
 <body>
     <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand font-weight-bold text-success" href="#">HaiDokter!</a>
+        <a class="nav-item nav-link active text-secondary" th:href="@{/}">Home</a>
         <button
             class="navbar-toggler"
             type="button"
@@ -30,9 +31,7 @@
         </button>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto"></ul>
-            <a class="nav-item nav-link active text-secondary" th:href="@{/}">Home
-                <span class="sr-only">(current)</span>
-            </a>
+            <a class="nav-item nav-link active text-secondary" th:text=${title}></a>
         </div>
     </nav>
 </body>
