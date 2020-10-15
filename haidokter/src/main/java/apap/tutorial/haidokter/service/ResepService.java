@@ -12,5 +12,16 @@ public interface ResepService {
     List<ResepModel> getResepList();
 
     //Method untuk mendapatkan data sebuah resep berdasarkan nomor resep
-    ResepModel getResepByNomorResep(String noResep);
+    ResepModel getResepByNomorResep(Long noResep);
+
+    //Method untuk update resep
+    ResepModel updateResep(ResepModel resepModel);
+
+    //Method untuk menghapus resep
+    void deleteResepByNoResep(ResepModel resepModel);
+
+    // Tutorial 2
+    // void updateCatatanResep(ResepModel resep, String catatan);
+
+    // void deleteResepByNoResep(String noResep);
 }
