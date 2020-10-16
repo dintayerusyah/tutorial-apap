@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.validation.BindingResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,9 +68,6 @@ public class ObatController {
         obatList.add(new ObatModel());
         resep.setListObat(obatList);
         
-        // ObatModel obat = new ObatModel();
-        // resep.getListObat().add(obat);
-        // System.out.println(resep.getListObat().size());
         model.addAttribute("resep", resep);
 
         return "form-addmultiple-obat";
@@ -85,13 +81,11 @@ public class ObatController {
     ){
         ResepModel resepModel = resepService.getResepByNomorResep(resep.getNoResep());
         List<ObatModel> listObat = resep.getListObat();
-        // System.out.println("Submission size : " + resep.getListObat().size());
         for(ObatModel obat : listObat){
             obat.setResepModel(resepModel);
             obatService.addObat(obat);
         }
         model.addAttribute("obatCount", listObat.size());
-        System.out.println("Submission size : " + listObat.size());
         return "addmultiple-obat";
     }
 
@@ -104,12 +98,7 @@ public class ObatController {
             resep.setListObat(new ArrayList<>());
         }
         resep.getListObat().add(new ObatModel());
-        // ObatModel obat = new ObatModel();
-        // resep.getListObat().add(obat);
-        // obat.setResepModel(resep);
-        // resepService.updateResep(resep);
         model.addAttribute("resep", resep);
-        System.out.println(resep.getListObat().size());
         return "form-addmultiple-obat";
     }
 
@@ -120,7 +109,6 @@ public class ObatController {
     ){
         Integer rowId = Integer.valueOf(req.getParameter("hapusRow"));
         resep.getListObat().remove(rowId.intValue());
-        // resepService.updateResep(resep);
         model.addAttribute("resep", resep);
         System.out.println(resep.getListObat().size());
         return "form-addmultiple-obat";
