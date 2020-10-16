@@ -28,8 +28,8 @@
                         <td th:text="${resep.namaPasien}"></td>
                         <td th:text="${resep.catatan}"></td>
                         <td>
-                            <a th:href="@{/resep/change/} + ${resep.noResep}" class="btn btn-primary">Lihat Resep</a>
-                            <a th:href="@{/resep/view/} + ${resep.noResep}" class="btn btn-success">Update Resep</a>
+                            <a th:href="@{/resep/view/} + ${resep.noResep}" class="btn btn-primary">Lihat Resep</a>
+                            <a th:href="@{/resep/change/} + ${resep.noResep}" class="btn btn-success">Update Resep</a>
                             <a th:href="@{/resep/delete/} + ${resep.noResep}" class="btn btn-danger">Hapus Resep</a>
                         </td>
                     </tr>
