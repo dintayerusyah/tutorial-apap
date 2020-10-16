@@ -65,9 +65,13 @@ public class ObatController {
         Model model
     ){
         ResepModel resep = resepService.getResepByNomorResep(noResep);
-        ObatModel obat = new ObatModel();
-        resep.getListObat().add(obat);
-        System.out.println(resep.getListObat().size());
+        List<ObatModel> obatList = new ArrayList<>();
+        obatList.add(new ObatModel());
+        resep.setListObat(obatList);
+        
+        // ObatModel obat = new ObatModel();
+        // resep.getListObat().add(obat);
+        // System.out.println(resep.getListObat().size());
         model.addAttribute("resep", resep);
 
         return "form-addmultiple-obat";
@@ -76,28 +80,33 @@ public class ObatController {
     // Submit Form Add Multiple Obat
     @RequestMapping(value="obat/add-multiple/{noResep}", params={"simpan"}, method=RequestMethod.POST)
     private String addMultipleObatSubmit(
-        @PathVariable Long noResep,
+        @ModelAttribute ResepModel resep,
         Model model
     ){
-        ResepModel resep = resepService.getResepByNomorResep(noResep);
+        ResepModel resepModel = resepService.getResepByNomorResep(resep.getNoResep());
+        List<ObatModel> listObat = resep.getListObat();
         // System.out.println("Submission size : " + resep.getListObat().size());
-        for(ObatModel obat : resep.getListObat()){
-            obat.setResepModel(resep);
+        for(ObatModel obat : listObat){
+            obat.setResepModel(resepModel);
             obatService.addObat(obat);
         }
-        model.addAttribute("obatCount", resep.getListObat().size());
-        System.out.println("Submission size : " + resep.getListObat().size());
+        model.addAttribute("obatCount", listObat.size());
+        System.out.println("Submission size : " + listObat.size());
         return "addmultiple-obat";
     }
 
     // Add row to add multiple obat form
     @RequestMapping(value="obat/add-multiple/{noResep}", params={"addRow"}, method=RequestMethod.POST)
     private String addRow(
-        @PathVariable Long noResep, Model model, @ModelAttribute ResepModel resep, BindingResult bindingResult
+        @ModelAttribute ResepModel resep, Model model
     ){
-        ObatModel obat = new ObatModel();
-        resep.getListObat().add(obat);
-        obat.setResepModel(resep);
+        if (resep.getListObat() == null || resep.getListObat().size() == 0) {
+            resep.setListObat(new ArrayList<>());
+        }
+        resep.getListObat().add(new ObatModel());
+        // ObatModel obat = new ObatModel();
+        // resep.getListObat().add(obat);
+        // obat.setResepModel(resep);
         // resepService.updateResep(resep);
         model.addAttribute("resep", resep);
         System.out.println(resep.getListObat().size());
@@ -107,7 +116,7 @@ public class ObatController {
     //Remove row from add multiple obat form
     @RequestMapping(value="obat/add-multiple/{noResep}", params={"hapusRow"}, method=RequestMethod.POST)
     private String removeRow(
-        @PathVariable Long noResep, Model model, HttpServletRequest req, @ModelAttribute ResepModel resep, BindingResult bindingResult
+        @ModelAttribute ResepModel resep, Model model, HttpServletRequest req
     ){
         Integer rowId = Integer.valueOf(req.getParameter("hapusRow"));
         resep.getListObat().remove(rowId.intValue());
