@@ -23,7 +23,7 @@ public class ObatController {
     ObatService obatService;
 
     @GetMapping("/obat/add/{noResep}")
-    private String addResepFormPage(
+    private String addObatFormPage(
         @PathVariable  Long noResep,
         Model model
     ){
