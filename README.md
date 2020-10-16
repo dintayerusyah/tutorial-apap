@@ -3,6 +3,20 @@
 * **Eldinta Yerusyah Taripar** - *1706984575* - *B*
 
 ### What I have learned today
+### Pertanyaan  Tutorial 4
+1. Jelaskan perbedaan th:include dan th:replace!
+th:include memasukkan kode fragment ke dalam html yang ada, sedangkan th:replace mensubstitusi atau menghapus kode yang ada dan menggantinya dengan kode dari fragment.
+
+2. Jelaskan apa fungsi dari th:object!
+th:object menyatakan object yang sedang dibuat atau diupdate dengan form.
+
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+$ digunakan untuk menyatakan nama dari model attribute, sedangkan * menyatakan attribute dari object. Contoh pada tutorial ini misalnya th:object="${resep}" memaksudkan form merupakan formulir create/update resep, sedangkan untuk membuat field bisa menggunakan "*{nama}", "*{namaDokter}", dsb.
+
+4. Bagaimana kamu menyelesaikan latihan nomor 3?
+Saya melakukannya sesuai hint yang diberikan, yaitu dengan mengirim variabel dari html yang dirender ke html fragment. Pada navbar di fragment.html saya memakai th:text=${title}, kemudian value dari title saya tentukan di setiap html setiap kali me-replace nav. Misal, untuk navbar pada halaman Home saya menggunakan kode berikut :
+<nav th:replace="fragments/fragment :: navbar(title='Home')"></nav>
+
 ### Pertanyaan  Tutorial 3
 1. Pada class ResepDb, terdapat method findByNoResep, apakah kegunaan dari method tersebut? <br/>
 Method findByNoResep digunakan untuk mencari resep berdasarkan nomor resep dari database, kemudian me-return object ResepModel (atau object Optional kosong jika ResepModel tidak ditemukan).
