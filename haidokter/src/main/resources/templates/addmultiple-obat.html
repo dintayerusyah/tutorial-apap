@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Berhasil Menghapus Obat</title>
+        <title>Berhasil Menambahkan Obat</title>
         <object th:include="fragments/fragment :: css" th:remove="tag"></object>
         <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     </head>
     <body>
         <nav th:replace="fragments/fragment :: navbar(title='Delete Obat Success')"></nav>
         <div class="container-fluid">
-            <h3 th:text="${obatCount} + ' Obat telah berhasil dihapus'"></h3>
+            <h3 th:text="${obatCount} + ' obat berhasil ditambahkan'"></h3>
         </div>
     </body>
 </html>

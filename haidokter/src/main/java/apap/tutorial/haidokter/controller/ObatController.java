@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import javax.servlet.http.HttpServletRequest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ObatController {
@@ -21,10 +27,14 @@ public class ObatController {
 
     @Autowired
     ObatService obatService;
+    
+    //Temporary list for obat rows
+    // List<ObatModel> obatRows = new ArrayList<ObatModel>();
 
+    // Form Add Obat
     @GetMapping("/obat/add/{noResep}")
-    private String addResepFormPage(
-        @PathVariable  Long noResep,
+    private String addObatFormPage(
+        @PathVariable Long noResep,
         Model model
     ){
         ObatModel obat = new ObatModel();
@@ -35,6 +45,7 @@ public class ObatController {
         return "form-add-obat";
     }
 
+    // Submit Form Add Obat
     @PostMapping("/obat/add")
     private String addObatSubmit(
         @ModelAttribute ObatModel obat,
@@ -46,7 +57,64 @@ public class ObatController {
         return "add-obat";
     }
 
-    // Latihan no 3
+    // Form Add Multiple Obat
+    @GetMapping("/obat/add-multiple/{noResep}")
+    private String addMultipleObatFormPage(
+        @PathVariable Long noResep,
+        Model model
+    ){
+        ResepModel resep = resepService.getResepByNomorResep(noResep);
+        List<ObatModel> obatList = new ArrayList<>();
+        obatList.add(new ObatModel());
+        resep.setListObat(obatList);
+        
+        model.addAttribute("resep", resep);
+
+        return "form-addmultiple-obat";
+    }
+
+    // Submit Form Add Multiple Obat
+    @RequestMapping(value="obat/add-multiple/{noResep}", params={"simpan"}, method=RequestMethod.POST)
+    private String addMultipleObatSubmit(
+        @ModelAttribute ResepModel resep,
+        Model model
+    ){
+        ResepModel resepModel = resepService.getResepByNomorResep(resep.getNoResep());
+        List<ObatModel> listObat = resep.getListObat();
+        for(ObatModel obat : listObat){
+            obat.setResepModel(resepModel);
+            obatService.addObat(obat);
+        }
+        model.addAttribute("obatCount", listObat.size());
+        return "addmultiple-obat";
+    }
+
+    // Add row to add multiple obat form
+    @RequestMapping(value="obat/add-multiple/{noResep}", params={"addRow"}, method=RequestMethod.POST)
+    private String addRow(
+        @ModelAttribute ResepModel resep, Model model
+    ){
+        if (resep.getListObat() == null || resep.getListObat().size() == 0) {
+            resep.setListObat(new ArrayList<>());
+        }
+        resep.getListObat().add(new ObatModel());
+        model.addAttribute("resep", resep);
+        return "form-addmultiple-obat";
+    }
+
+    //Remove row from add multiple obat form
+    @RequestMapping(value="obat/add-multiple/{noResep}", params={"hapusRow"}, method=RequestMethod.POST)
+    private String removeRow(
+        @ModelAttribute ResepModel resep, Model model, HttpServletRequest req
+    ){
+        Integer rowId = Integer.valueOf(req.getParameter("hapusRow"));
+        resep.getListObat().remove(rowId.intValue());
+        model.addAttribute("resep", resep);
+        System.out.println(resep.getListObat().size());
+        return "form-addmultiple-obat";
+    }
+
+    // Form Update Obat
     @GetMapping("/obat/change/{id}")
     private String changeObatFormPage(
         @PathVariable Long id,
@@ -58,6 +126,7 @@ public class ObatController {
         return "form-update-obat";
     }
 
+    // Submit Form Update Obat
     @PostMapping("/obat/change")
     private String changeObatFormSubmit(
         @ModelAttribute ObatModel obat,
@@ -69,13 +138,23 @@ public class ObatController {
         return "update-obat";
     }
 
-    @GetMapping("/obat/delete/{id}")
-    private String deleteObat(
-        @PathVariable Long id,
-        Model model
-    ){
-        ObatModel obat = obatService.getObatByIdObat(id);
-        obatService.deleteObat(obat);
+    // @GetMapping("/obat/delete/{id}")
+    // private String deleteObat(
+    //     @PathVariable Long id,
+    //     Model model
+    // ){
+    //     ObatModel obat = obatService.getObatByIdObat(id);
+    //     obatService.deleteObat(obat);
+    //     return "delete-obat";
+    // }
+    
+    // Delete Obat
+    @PostMapping(value = "/obat/delete")
+    public String deleteObatFormSubmit(@ModelAttribute ResepModel resep, Model model){
+        model.addAttribute("obatCount", resep.getListObat().size());
+        for (ObatModel obat : resep.getListObat()){
+            obatService.deleteObatById(obat.getId());
+        }
         return "delete-obat";
     }
 }

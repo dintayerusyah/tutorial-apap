@@ -2,8 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Resep Tidak Ditemukan</title>
+        <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     </head>
     <body>
+        <nav th:replace="fragments/fragment :: navbar(title='Resep Not Found')"></nav>
         <h2>Resep tidak ditemukan</h2>
         <a href="/">Home</a>
     </body>
