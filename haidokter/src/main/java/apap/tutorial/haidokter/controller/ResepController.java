@@ -15,7 +15,7 @@ import org.springframework.ui.Model;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Comparator;
-
+import java.time.LocalDateTime;
 
 @Controller
 public class ResepController {
@@ -27,7 +27,9 @@ public class ResepController {
     private ObatService obatService;
 
     @GetMapping("/")
-    private String home(){return "home";}
+    private String home(Model model){
+        model.addAttribute("localDate", LocalDateTime.now());
+        return "home";}
 
     @GetMapping("/resep/add")
     public String addResepFormPage(Model model){
