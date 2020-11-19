@@ -1,6 +1,7 @@
 package apap.tutorial.haidokter.restcontroller;
 
 import apap.tutorial.haidokter.model.ResepModel;
+import apap.tutorial.haidokter.rest.ResepDetail;
 import apap.tutorial.haidokter.service.ResepRestService;
 
 import org.apache.catalina.connector.Response;
@@ -67,4 +68,14 @@ public class ResepRestController {
 
     @GetMapping(value="/reseps")
     private List<ResepModel> retrieveListResep() {return resepRestService.retrieveListResep();}
+
+    @GetMapping(value = "/resep/{noResep}/status")
+    private Mono<String> getStatus(@PathVariable Long noResep){
+        return resepRestService.getStatus(noResep);
+    }
+
+    @GetMapping(value = "/full")
+    private Mono<ResepDetail> postStatus(){
+        return resepRestService.postStatus();
+    }
 }
