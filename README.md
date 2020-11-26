@@ -3,6 +3,19 @@
 * **Eldinta Yerusyah Taripar** - *1706984575* - *B*
 
 ### What I have learned today
+### Pertanyaan Tutorial 5
+1. Apa itu Postman? Apa kegunaannya? <br>
+Postman merupakan tool untuk menguji REST API. Dengan menggunakan Postman, kita dapat melakukan testing terhadap REST API yang kita buat tanpa harus membangun web presentation sistem terlebih dahulu. <br>
+
+2. Jelaskan fungsi dari anotasi @JsonIgnoreProperties dan @JsonProperty <br>
+@JsonIgnoreProperties digunakan untuk menandai property yang ingin di-ignore. @JsonProperty digunakan untuk memberi nama property JSON.<br>
+
+3. Apa kegunaan atribut WebClient?<br>
+WebClient merupakan sebuah interface untuk menghandle web request.<br>
+
+4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?<br>
+ResponseEntity merupakan ekstensi dari HttpEntity yang merepresentasikan keseluruhan HTTP Response, termasuk status code, header, dan body. ResponseEntity digunakan untuk mengkonfigurasi HTTP Response. BindingResult adalah objek yang berisi hasil validasi objek yang di-post. Biasanya BindingResult digunakan sebagai parameter method post di controller dan dituliskan setelah objek yang di-post dan ingin divalidasi. <br>
+<br>
 ### Pertanyaan  Tutorial 4
 1. Jelaskan perbedaan th:include dan th:replace!
 th:include memasukkan kode fragment ke dalam html yang ada, sedangkan th:replace mensubstitusi atau menghapus kode yang ada dan menggantinya dengan kode dari fragment.
