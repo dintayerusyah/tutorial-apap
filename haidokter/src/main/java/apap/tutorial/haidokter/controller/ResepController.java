@@ -26,8 +26,8 @@ public class ResepController {
     @Autowired
     private ObatService obatService;
 
-    @GetMapping("/")
-    private String home(){return "home";}
+    // @GetMapping("/")
+    // private String home(){return "home";}
 
     @GetMapping("/resep/add")
     public String addResepFormPage(Model model){
@@ -131,118 +131,4 @@ public class ResepController {
             return "resep-not-found";
         }
     }
-
-    // TUTORIAL 2
-    // @Autowired
-    // private ResepService resepService;
-
-    // //Routing URL yang diinginkan
-    // @RequestMapping("/resep/add")
-    // public String addResep(
-    //     //Request parameter yang ingin dibawa
-    //     @RequestParam(value = "noResep", required = true) String noResep,
-    //     @RequestParam(value = "namaDokter", required = true) String namaDokter,
-    //     @RequestParam(value = "namaPasien" ,required = true) String namaPasien,
-    //     @RequestParam(value = "catatan", required = true) String catatan,
-    //     Model model
-    // ){
-    //     //Membuat objek ResepModel
-    //     ResepModel resep = new ResepModel(noResep, namaDokter, namaPasien, catatan);
-
-    //     //Memanggil service addResep
-    //     resepService.addResep(resep);
-
-    //     //Add variabel nomor resep ke 'nomorResep' untuk dirender pada Thymeleaf
-    //     model.addAttribute("nomorResep", noResep);
-
-    //     //Return view template yang ingin digunakan
-    //     return "add-resep";
-    // }
-
-    // @RequestMapping("/resep/viewall")
-    // public String listResep(Model model){
-    //     //Mendapatkan semua ResepModel
-    //     List<ResepModel> listResep = resepService.getResepList();
-
-    //     //Add variabel semua ResepModel ke 'listResep' untuk dirender pada thymeleaf
-    //     model.addAttribute("listResep", listResep);
-
-    //     //Return view template yang ingin digunakan
-    //     return "viewall-resep";
-    // }
-
-    // //Routing URL untuk melihat detail resep
-    // @RequestMapping("/resep/view")
-    // public String detailResep(
-    //     @RequestParam(value="noResep") String noResep, Model model
-    // ){
-    //     //Mendapatkan ResepModel sesuai nomor resep
-    //     ResepModel resep = resepService.getResepByNomorResep(noResep);
-
-    //     //Add variabel ResepModel ke 'resep' untuk dirender pada thymeleaf
-    //     model.addAttribute("resep", resep);
-
-    //     //Return view template yang ingin digunakan
-    //     return "view-resep";
-    // }
-
-    // //LATIHAN NOMOR 1
-    // @RequestMapping("/resep/view/no-resep/{noResep}")
-    // public String detailResepPathVariable(
-    //     @PathVariable(value="noResep") String noResep, Model model
-    // ){
-    //     //Mendapatkan ResepModel sesuai nomor resep
-    //     ResepModel resep = resepService.getResepByNomorResep(noResep);
-
-    //     //Add variabel ResepModel ke 'resep' untuk dirender pada thymeleaf
-    //     model.addAttribute("resep", resep);
-
-    //     //Return view template yang ingin digunakan
-    //     return "view-resep";
-    // }
-
-    // //LATIHAN NOMOR 2
-    // @RequestMapping("/resep/update/no-resep/{noResep}/catatan/{catatan}")
-    // public String updateResep(
-    //     @PathVariable(value="noResep") String noResep, 
-    //     @PathVariable(value="catatan") String catatan,
-    //     Model model
-    // ){
-    //     //Mendapatkan ResepModel sesuai nomor resep
-    //     ResepModel resep = resepService.getResepByNomorResep(noResep);
-
-    //     //Mengubah catatan resep
-    //     resepService.updateCatatanResep(resep, catatan);
-
-    //     //Add variabel ResepModel ke 'resep' untuk dirender pada thymeleaf
-    //     model.addAttribute("resep", resep);
-
-    //     //Return view template yang ingin digunakan
-    //     return "update-resep-success";
-
-    // }
-
-    // //LATIHAN NO 3
-    // @RequestMapping("/resep/delete/no-resep/{noResep}")
-    // public String deleteResep(
-    //     @PathVariable(value="noResep") String noResep,
-    //     Model model
-    // ){
-    //     //Mendapatkan ResepModel sesuai nomor resep
-    //     ResepModel resep = resepService.getResepByNomorResep(noResep);
-        
-    //     //Add variabel ResepModel ke 'resep' untuk dirender pada thymeleaf
-    //     model.addAttribute("resep", resep);
-
-    //     if (resep == null){
-    //         return "delete-not-found";
-    //     }
-    //     else{
-    //         //Menghapus resep
-    //         resepService.deleteResepByNoResep(noResep);
-
-    //         //Return view template yang ingin digunakan
-    //         return "delete-resep";
-    //     }
-    // }
 }
