@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import apap.tutorial.haidokter.model.UserModel;
 
+import java.util.Optional;
+
 @Repository
 public interface UserDb extends JpaRepository<UserModel, Long>{
-    UserModel findByUsername(String username);
+    Optional<UserModel> findByUsername(String username);
 }

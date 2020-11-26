@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -15,8 +16,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/css/**").permitAll()
+        http.authorizeRequests()
+        .antMatchers("/css/**").permitAll()
         .antMatchers("/js/**").permitAll()
+        .antMatchers("/resep/**").hasAnyAuthority("APOTEKER")
         .anyRequest().authenticated()
         .and()
         .formLogin()
@@ -34,5 +37,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .passwordEncoder(encoder())
             .withUser("odading").password(encoder().encode("mangoleh"))
             .roles("USER");
+    }
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
     }
 }
