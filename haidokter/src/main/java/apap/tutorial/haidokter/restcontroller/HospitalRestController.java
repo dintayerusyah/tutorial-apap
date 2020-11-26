@@ -27,7 +27,7 @@ public class HospitalRestController {
     private HospitalRestService hospitalRestService;
 
     @RequestMapping(value="/hospitals/find", method=RequestMethod.GET)
-    private Mono<HospitalDetail> getHospitalByState(@RequestParam(value = "state") String state){
+    private Mono<String> getHospitalByState(@RequestParam(value = "state") String state){
         return hospitalRestService.getHospitalByState(state);
     }
     
