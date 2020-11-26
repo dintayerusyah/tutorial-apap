@@ -20,6 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .antMatchers("/css/**").permitAll()
         .antMatchers("/js/**").permitAll()
         .antMatchers("/resep/**").hasAnyAuthority("APOTEKER")
+        .antMatchers("/obat/**").hasAnyAuthority("APOTEKER")
         .anyRequest().authenticated()
         .and()
         .formLogin()
