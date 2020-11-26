@@ -27,8 +27,8 @@ public class HospitalRestServiceImpl implements HospitalRestService{
     }
 
     @Override
-    public Mono<HospitalDetail> getHospitalByState(String state){
+    public Mono<String> getHospitalByState(String state){
         return this.webClient.get().uri(uriBuilder -> uriBuilder
-        .queryParam("state", state).build()).retrieve().bodyToMono(HospitalDetail.class);
+        .queryParam("state", state).build()).retrieve().bodyToMono(String.class);
     }
 }
