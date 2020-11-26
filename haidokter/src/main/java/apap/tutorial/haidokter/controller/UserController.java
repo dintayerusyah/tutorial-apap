@@ -21,7 +21,9 @@ public class UserController {
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     private String addUserSubmit(@ModelAttribute UserModel user){
-        userService.addUser(user);
+        if(userService.passwordValidation(user.getPassword())){
+            userService.addUser(user);
+        }
         return "redirect:/";
     }
 
