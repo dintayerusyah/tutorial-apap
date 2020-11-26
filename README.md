@@ -3,6 +3,22 @@
 * **Eldinta Yerusyah Taripar** - *1706984575* - *B*
 
 ### What I have learned today
+### Pertanyaan Tutorial 6
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?<br>
+Otentikasi adalah proses yang terkait dengan mengenali user yang ingin masuk ke sistem, konsep ini digunakan saat login menggunakan username dan password. Implementasinya ada pada kode untuk membuat halaman login dan pada method login di controller.<br>
+Sedangkan otorisasi berkaitan dengan izin akses yang dimiliki user sesuai dengan rolenya. Otorisasi berguna untuk menentukan apakah user tertentu berhak mengakses halaman tertentu. Contoh implementasinya ada pada WebSecurityConfig.java di method configure. Pada method tersebut terdapat method antMatchers untuk mengkonfigurasi izin akses halaman. Misalnya, .antMatchers("/resep/**").hasAnyAuthority("APOTEKER") berarti url yang diawali "/resep/" hanya dapat diakses oleh Apoteker.
+<br>
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerjanya!
+<br> BCryptPasswordEncoder berfungsi untuk mengenkripsi password dengan mengubah String biasa menjadi string yang sudah terenkripsi, sehingga password yang disimpan di database tidak berupa raw string.
+<br>
+3. Jelaskan secara singkat apa itu UUID beserta penggunaannya!<br>
+UUID merupakan ID yang di generate otomatis oleh spring yang berfungsi sebagai identifier model.
+<br>
+4. Apa kegunaan class UserDetailsServiceImpl.java ? Mengapa harus ada class tersebut padahal kita sudah
+memiliki class UserRoleServiceImpl.java ?
+
+
+
 ### Pertanyaan Tutorial 5
 1. Apa itu Postman? Apa kegunaannya? <br>
 Postman merupakan tool untuk menguji REST API. Dengan menggunakan Postman, kita dapat melakukan testing terhadap REST API yang kita buat tanpa harus membangun web presentation sistem terlebih dahulu. <br>
