@@ -55,7 +55,7 @@ public class UserController {
             if(userService.passwordValidation(newPassword)) {
                 user.setPassword(newPassword);
                 userService.addUser(user);
-                return "update-password";
+                return "form-update-password";
             }
             error = "\nPassword harus mengandung huruf, angka, dan minimal terdiri dari 8 karakter!";
         }
