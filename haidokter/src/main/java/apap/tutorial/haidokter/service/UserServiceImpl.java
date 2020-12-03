@@ -25,4 +25,14 @@ public class UserServiceImpl implements UserService{
         String hashedPassword = passwordEncoder.encode(password);
         return hashedPassword;
     }
+
+    @Override
+    public boolean passwordValidation(String password){
+        return password.matches("^(?=.*[0-9])(?=.*[a-zA-Z])(?=\\S+$).{8,}$");
+    }
+
+    @Override
+    public UserModel getUserByUsername(String username){
+        return userDb.findByUsername(username);
+    }
 }

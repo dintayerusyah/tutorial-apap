@@ -16,11 +16,12 @@ import apap.tutorial.haidokter.repository.UserDb;
 
 public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired
-    private UserDb userDb;
+    private UserDb userDB;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-        UserModel user = userDb.findByUsername(username).get();
+        UserModel user = userDB.findByUsername(username);
+        System.out.println(user.getUsername());
         Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
         grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getRole()));
         return new User(user.getUsername(), user.getPassword(), grantedAuthorities);
