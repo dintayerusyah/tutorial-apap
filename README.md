@@ -3,6 +3,31 @@
 * **Eldinta Yerusyah Taripar** - *1706984575* - *B*
 
 ### What I have learned today
+### Pertanyaan Tutorial 7
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan. <br/>
+Pada latihan nomor 1, saya menggunakan conditional rendering if-else. Jika item movie di "checked" maka checkbox akan ditampilkan, jika tidak maka checkbox tidak ditampilkan. <br/>
+Untuk latihan nomor 2 saya membuat function clearFavs yang akan mengosongkan array/me-reset array favItems seperti semula, sehingga tidak ada movie di My Favorites. Kemudian saya membuat button dengan action jika diklik maka akan memanggil function clearFavs. Button tersebut saya beri condition jika array favItems memiliki isi maka tampilkan button. <br/>
+Untuk mengerjakan latihan nomor 3, saya meng-comment code else newItems.splice(targetInd, 1); pada App.js . splice() adalah method yang mengembalikan item yang diremove dari array. Method splice(targetInd, 1) berarti meremove item pada index targetInd dan item yang diremove sebanyak 1 item. Jika code ini dihapus, maka item movie tidak bisa diremove dari My Favorites. <br/>
+Pada latihan nomor 4, saya membuat switch dengan yang memanggil function showFavs. Function showfavs akan mengatur apakah My Favorites ditampilkan atau tidak sesuai dengan state saat ini. <br/>
+Untuk no 5, saya membuat component EmptyState yang me-return HTML yang ingin ditampilkan jika daftar My Favorites kosong. Kemudian saya menambahkan kode {!this.state.favItems.length? <EmptyState/> : pada App.js sebelum bagian "<List>" . Jika array favItems kosong maka EmptyState ditampilkan, jika tidak maka daftar My Favorites ditampilkan.<br/><br/>
+Berikut ini tampilan halaman setelah semua soal latihan selesai dikerjakan.
+![Gambar 1](https://i.ibb.co/MsmX0r0/tutorial-7-01.png)
+![Gambar 2](https://i.ibb.co/bXwR78S/tutorial-7-02.png)
+![Gambar 3](https://i.ibb.co/qrK5Jj5/tutorial-7-03.png)
+<br/>
+
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props ?
+Menurut saya state mirip dengan props karena sama-sama menyimpan informasi mengenai component. Tetapi menurut saya state bisa dikatakan adalah status atau keadaan suatu component dalam suatu waktu. State digunakan untuk tracking perubahan apa saja yang terjadi pada component. Sedangkan props mirip dengan parameter pada method/function. Props dapat dipassed ke sebuah component atau dapat dimiliki oleh component itu sendiri.
+
+3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!
+Setiap component terpisah sehingga lebih mudah untuk memperbaiki code. Component juga dapat dipakai berulang (reusable), sehingga programmer tidak perlu menulis code yang sama berulang kali pada tiap halaman HTML yang berbeda. Component hanya perlu ditulis sekali kemudian di import jika ingin digunakan.
+
+4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?
+Code dapat dipakai ulang dan tampilan web lebih dinamis.
+
+5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?
+Syntax yang kurang familiar terutama bagi yang baru mencoba React, karena React menggunakan JSX yang merupakan gabungan HTML dan Javascript.
+
 ### Pertanyaan Tutorial 6
 1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?<br>
 Otentikasi adalah proses yang terkait dengan mengenali user yang ingin masuk ke sistem, konsep ini digunakan saat login menggunakan username dan password. Implementasinya ada pada kode untuk membuat halaman login dan pada method login di controller.<br>
