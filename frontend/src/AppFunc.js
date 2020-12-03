@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import List from '../src/components/List/index';
 import listMovies from '../src/movies.json';
+import EmptyState from '../src/components/EmptyState/index';
 import "./App.css";
 
 /**
@@ -19,6 +20,7 @@ import "./App.css";
 // [favItems, setFavItems] = [state, setState]
 
     const [favItems, setFavItems] = useState(() => []);
+    const [show, setShow] = useState(() => []);
 
     function handleItemClick(item){
         // immutability
@@ -28,10 +30,20 @@ import "./App.css";
         const targetInd = newItems.findIndex(it => it.id === newItem.id);
 
         if(targetInd<0) newItems.push(newItem);
-        else newItems.splice(targetInd, 1);//delete 1 item at index targetInd
+        // else newItems.splice(targetInd, 1);//delete 1 item at index targetInd
 
         //trigger to set a new state
         setFavItems(newItems);
+    }
+
+    // latihan no 2
+    function clearFavs(){
+        setFavItems([]);
+    }
+
+    //latihan no 5
+    function showFavs(){
+        setShow(!show);
     }
 
         return(
@@ -41,6 +53,10 @@ import "./App.css";
                 (This is a <strong>function-base</strong> application)
                 </p>
                 <div className="container pt-3">
+                <div className="row">
+            {/* latihan no 2 */}
+            {favItems.length? <button className="btn btn-danger" onClick={clearFavs}>Remove All Favorites</button>:null}
+          </div>
                     <div className="row">
                         <div className="col-sm">
                             <List
