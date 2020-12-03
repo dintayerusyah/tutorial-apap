@@ -20,7 +20,10 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    private String addUserSubmit(@ModelAttribute UserModel user){
+    private String addUserSubmit(@ModelAttribute UserModel user, Model model){
+        if(userService.getUserByUsername(user.getUsername()) != null){
+            model.addAttribute("errorUsername", "Username " + user.getUsername() + " sudah terdaftar!");
+        }
         if(userService.passwordValidation(user.getPassword())){
             userService.addUser(user);
         }
