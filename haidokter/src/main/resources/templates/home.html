@@ -9,6 +9,7 @@
 <body>
     <nav th:replace="fragments/fragment :: navbar(title='Home')"></nav>
     <div class="container-fluid">
+        <h2 th:text="'Hello ' + ${#httpServletRequest.remoteUser} + '!'">Login as</h2>
         <h2>Selamat datang di HaiDokter!</h2>
         <a th:href="@{/resep/viewall}" class="btn btn-success">Lihat semua resep</a>
         <a th:href="@{/resep/add}" class="btn btn-outline-success">Tambah resep</a>
@@ -38,22 +39,31 @@
                 </div>
             </div>
         </div>
+        <div class="row" sec:authorize="hasRole('ADMIN')">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">Tambah User Baru</div>
+                    <div class="card-body">
+                        <div th:if="${errorUsername != null}">
+                            <span th:text=${errorUsername} style="color: red">Username sudah terdaftar!</span>
+                        </div>
+                        <form th:action="@{user/addUser}" method="POST">
+                            <label>Username</label>
+                            <input type="text" name="username" class="form-control">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control">
+                            <label>Role</label>
+                            <select name="role" class="form-control">
+                                <option selected value="">-- Pilih Role</option>
+                                <option th:each="role : ${listRole}" th:value="${role.id}" th:text="${role.role}"></option>
+                            </select>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- <h2>Selamat Datang di HaiDokter!</h2>
-    <h3>Tambah Resep</h3>
-    <td><a th:href="@{/resep/add}">Tambah Resep</a></td>
-
-    <h3>Cari Resep Berdasarkan Nomor Resep</h3>
-
-    <form  th:action="@{/resep/view}" method="GET">
-        No Resep:<br>
-        <label>
-            <input type="text" name="noResep">
-        </label>
-        <button type="submit">Cari</button>
-    </form>
-
-    <h3>Lihat Semua Resep</h3>
-    <td><a th:href="@{/resep/viewall}">View All Resep</a></td> -->
 </body>
 </html>
